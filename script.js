@@ -14,25 +14,22 @@ suggestions.addEventListener('click', useSuggestion);
 
 
 function searchHandler(e) {
-	let char = (e.target.value).toLowerCase()
-	search(char)
+	let inputVal = (e.target.value).toLowerCase()
+
+	let results = search(inputVal)
+
+	showSuggestions(results, inputVal)
 }
 
 
 function search(str) {
-	let results = []
-
-	fruit.filter(function (el) {
-		if (el.toLowerCase().includes(str)) {
-			results.push(el)
-		}
+	return fruit.filter(function (el) {
+		return el.toLowerCase().includes(str)
 	})
-
-	showSuggestions(results, str)
 }
 
 
-function showSuggestions(results, input) {
+function showSuggestions(results, inputVal) {
 	suggestions.innerText = ''
 
 	let total = 0;
@@ -47,7 +44,7 @@ function showSuggestions(results, input) {
 			suggestions.append(li)
 		}
 
-		if (input.length === 0) {
+		if (inputVal.length === 0) {
 			suggestions.innerText = ''
 		}
 
